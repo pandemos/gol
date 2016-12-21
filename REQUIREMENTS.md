@@ -28,3 +28,6 @@
 
 - Board state can be initialized to a random pattern
 - Board state can be loaded from an RLE string: http://conwaylife.com/wiki/Run_Length_Encoded
+
+- Board rules can be saved as a rulestring: http://conwaylife.com/wiki/Rulestring#Rules
+- Board rules can be loaded from a rulestring: http://conwaylife.com/wiki/Rulestring#Rules
