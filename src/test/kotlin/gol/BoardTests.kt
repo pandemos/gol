@@ -84,4 +84,111 @@ class BoardTests {
         board.reset()
         assertEquals(0, board.iteration)
     }
+
+    /**
+     * for any cell, determine the number of living neighbors when no neighbors are living
+     */
+    @Test
+    fun determineNumberOfLiving0Neighbors() {
+
+        val board = Board(3, 3)
+        board.setCellAt(1, 1, Cell(CellMortality.Alive))
+        assertEquals(0, board.livingNeighbors(1, 1))
+    }
+/*
+    /**
+     * for any cell, determine the number of living neighbors
+     */
+    @Test
+    fun determineNumberOfLiving1NeighborEdge() {
+
+        var board = Board(3, 3)
+        board.setCellAt(1, 1, Cell(CellMortality.Alive))
+        board.setCellAt(1, 0, Cell(CellMortality.Alive))
+        assertEquals(1, board.livingNeighbors(1, 1))
+
+        board = Board(3, 3)
+        board.setCellAt(1, 1, Cell(CellMortality.Alive))
+        board.setCellAt(0, 1, Cell(CellMortality.Alive))
+        assertEquals(1, board.livingNeighbors(1, 1))
+
+        board = Board(3, 3)
+        board.setCellAt(1, 1, Cell(CellMortality.Alive))
+        board.setCellAt(2, 1, Cell(CellMortality.Alive))
+        assertEquals(1, board.livingNeighbors(1, 1))
+
+        board = Board(3, 3)
+        board.setCellAt(1, 1, Cell(CellMortality.Alive))
+        board.setCellAt(1, 2, Cell(CellMortality.Alive))
+        assertEquals(1, board.livingNeighbors(1, 1))
+
+    }
+
+    /**
+     * for any cell, determine the number of living neighbors
+     */
+    @Test
+    fun determineNumberOfLiving2NeighborEdge() {
+
+        var board = Board(3, 3)
+        board.setCellAt(1, 1, Cell(CellMortality.Alive))
+        board.setCellAt(1, 0, Cell(CellMortality.Alive))
+        board.setCellAt(0, 1, Cell(CellMortality.Alive))
+        assertEquals(2, board.livingNeighbors(1, 1))
+
+        board = Board(3, 3)
+        board.setCellAt(1, 1, Cell(CellMortality.Alive))
+        board.setCellAt(2, 1, Cell(CellMortality.Alive))
+        board.setCellAt(1, 2, Cell(CellMortality.Alive))
+        assertEquals(2, board.livingNeighbors(1, 1))
+
+    }
+    /**
+     * for any cell, determine the number of living neighbors
+     */
+    @Test
+    fun determineNumberOfLiving1NeighborCorner() {
+
+        var board = Board(3, 3)
+        board.setCellAt(1, 1, Cell(CellMortality.Alive))
+        board.setCellAt(0, 0, Cell(CellMortality.Alive))
+        assertEquals(1, board.livingNeighbors(1, 1))
+
+        board = Board(3, 3)
+        board.setCellAt(1, 1, Cell(CellMortality.Alive))
+        board.setCellAt(0, 2, Cell(CellMortality.Alive))
+        assertEquals(1, board.livingNeighbors(1, 1))
+
+        board = Board(3, 3)
+        board.setCellAt(1, 1, Cell(CellMortality.Alive))
+        board.setCellAt(2, 0, Cell(CellMortality.Alive))
+        assertEquals(1, board.livingNeighbors(1, 1))
+
+        board = Board(3, 3)
+        board.setCellAt(1, 1, Cell(CellMortality.Alive))
+        board.setCellAt(2, 2, Cell(CellMortality.Alive))
+        assertEquals(1, board.livingNeighbors(1, 1))
+
+    }
+
+    /**
+     * for any cell, determine the number of living neighbors
+     */
+    @Test
+    fun determineNumberOfLiving2NeighborCorner() {
+
+        var board = Board(3, 3)
+        board.setCellAt(1, 1, Cell(CellMortality.Alive))
+        board.setCellAt(0, 0, Cell(CellMortality.Alive))
+        board.setCellAt(2, 2, Cell(CellMortality.Alive))
+        assertEquals(2, board.livingNeighbors(1, 1))
+
+        board = Board(3, 3)
+        board.setCellAt(1, 1, Cell(CellMortality.Alive))
+        board.setCellAt(2, 0, Cell(CellMortality.Alive))
+        board.setCellAt(0, 2, Cell(CellMortality.Alive))
+        assertEquals(2, board.livingNeighbors(1, 1))
+
+    }
+    */
 }

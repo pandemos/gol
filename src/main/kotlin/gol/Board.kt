@@ -47,6 +47,13 @@ class Board(val width: Int,
         iteration = 0
     }
 
+    /**
+     * Determine the number of living neighbors
+     */
+    fun livingNeighbors(x: Int, y: Int): Int {
+        return 0
+    }
+
     private fun makeCellKey(x: Int, y: Int): String {
         return "{$x},{$y}"
     }

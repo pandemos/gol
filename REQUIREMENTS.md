@@ -25,11 +25,13 @@
 - Board rules can be saved as a rulestring: http://conwaylife.com/wiki/Rulestring#Rules
 - Board rules can be loaded from a rulestring: http://conwaylife.com/wiki/Rulestring#Rules
 
+- A board must be able to, for any cell, determine the number of living neighbors
+    - A neighbor is a cell with an adjoining edge or corner
+
 - A board has a set of rules:
   - For a cell that is ALIVE:
       - Each cell with one or no living neighbors dies, as if by solitude.
       - Each cell with four or more living neighbors dies, as if by overpopulation.
-      - Each cell with two or three living neighbors survives.
   - For a cell that is DEAD:
       - Each cell with exactly three living neighbors becomes populated.
 

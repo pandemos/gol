@@ -5,6 +5,8 @@ package gol
  */
 class Rules(val ruleString: String = "B3/S23") {
 
+    private val ruleFormat: RuleFormat = RleRuleFormat(ruleString)
+
     private var onAppliedCallbacks = mutableListOf<(Board) -> Unit>()
 
     /**
