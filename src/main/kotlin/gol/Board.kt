@@ -69,7 +69,7 @@ class Board(val width: Int,
 
     companion object {
 
-        val randomGenerator: SecureRandom = SecureRandom()
+        private val randomGenerator: SecureRandom = SecureRandom()
 
         /**
          * Create a new board at iteration 0 and initialize it with up to n living cells
