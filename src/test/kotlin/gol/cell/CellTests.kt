@@ -1,4 +1,4 @@
-package gol
+package gol.cell
 
 import gol.cell.Cell
 import gol.cell.CellMortality

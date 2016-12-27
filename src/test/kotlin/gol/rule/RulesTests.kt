@@ -1,4 +1,4 @@
-package gol
+package gol.rule
 
 import gol.board.Board
 import gol.rule.Rules

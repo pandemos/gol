@@ -1,4 +1,4 @@
-package gol
+package gol.rule.format
 
 import gol.rule.format.RleRuleFormat
 import org.junit.Assert.assertEquals

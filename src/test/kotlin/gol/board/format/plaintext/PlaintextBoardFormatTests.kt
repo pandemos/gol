@@ -1,4 +1,4 @@
-package gol
+package gol.board.format.plaintext
 
 import gol.board.Board
 import gol.board.format.plaintext.PlaintextBoardFormat

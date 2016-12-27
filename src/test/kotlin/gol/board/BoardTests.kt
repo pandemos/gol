@@ -1,4 +1,4 @@
-package gol
+package gol.board
 
 import gol.board.Board
 import gol.cell.Cell
