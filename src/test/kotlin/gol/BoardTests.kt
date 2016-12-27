@@ -2,7 +2,9 @@ package gol
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
+import org.junit.Rule
 import org.junit.Test
+import kotlin.test.*
 
 /** Represents a grid
  * Created by aknauss on 12/21/16.
@@ -83,6 +85,30 @@ class BoardTests {
         val board = Board(10, 10, 4)
         board.reset()
         assertEquals(0, board.iteration)
+    }
+
+    /**
+     * Attempting to access a cell outside the board throws an exception
+     */
+    @Test
+    fun outOfRangeCell() {
+        val board = Board(10, 10)
+
+        assertFailsWith(IndexOutOfBoundsException::class) {
+            board.setCellAt(-1, -1, Cell(CellMortality.Alive))
+        }
+
+        assertFailsWith(IndexOutOfBoundsException::class) {
+            board.setCellAt(board.width, board.height, Cell(CellMortality.Alive))
+        }
+
+        assertFailsWith(IndexOutOfBoundsException::class) {
+            board.cellAt(-1, -1)
+        }
+
+        assertFailsWith(IndexOutOfBoundsException::class) {
+            board.cellAt(board.width, board.height)
+        }
     }
 
     /**

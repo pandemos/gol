@@ -15,6 +15,7 @@ class Board(val width: Int,
      * Set the cell at the specified coordinate to the specified cell instance
      */
     fun setCellAt(x: Int, y: Int, cell: Cell) {
+        checkCellRange(x, y)
         val cellKey = makeCellKey(x, y)
         cells.set(cellKey, cell)
     }
@@ -23,6 +24,7 @@ class Board(val width: Int,
      * Get the cell at the specified coordinates
      */
     fun cellAt(x: Int, y: Int): Cell {
+        checkCellRange(x, y)
         val cellKey = makeCellKey(x, y)
         val cell = cells[cellKey]
         if (cell != null) {
@@ -56,5 +58,11 @@ class Board(val width: Int,
 
     private fun makeCellKey(x: Int, y: Int): String {
         return "{$x},{$y}"
+    }
+
+    private fun checkCellRange(x: Int, y: Int) {
+        if (x < 0 || x >= width || y < 0 || y >= height) {
+            throw IndexOutOfBoundsException("Requested index is outside of board: $x, $y")
+        }
     }
 }
