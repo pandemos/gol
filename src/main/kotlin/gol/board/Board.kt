@@ -1,5 +1,8 @@
-package gol
+package gol.board
 
+import gol.cell.Cell
+import gol.cell.CellMortality
+import gol.rule.Rules
 import java.security.SecureRandom
 import java.util.*
 

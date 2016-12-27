@@ -1,5 +1,7 @@
 package gol
 
+import gol.board.Board
+import gol.rule.Rules
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 

@@ -1,5 +1,8 @@
 package gol
 
+import gol.board.Board
+import gol.cell.Cell
+import gol.cell.CellMortality
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Rule

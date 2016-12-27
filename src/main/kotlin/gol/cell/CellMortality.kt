@@ -1,4 +1,4 @@
-package gol
+package gol.cell
 
 /** Enum representing a cell's state
  * Created by aknauss on 12/21/16.

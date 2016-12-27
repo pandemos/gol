@@ -1,4 +1,4 @@
-package gol
+package gol.rule.format
 
 /** Implementation of rules formatted using RLE
  * See http://conwaylife.com/wiki/Rulestring#Rules

@@ -1,4 +1,8 @@
-package gol
+package gol.rule
+
+import gol.board.Board
+import gol.rule.format.RleRuleFormat
+import gol.rule.format.RuleFormat
 
 /** Representation of automaton rules
  * Created by aknauss on 12/21/16.

@@ -1,5 +1,6 @@
 package gol
 
+import gol.rule.format.RleRuleFormat
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import kotlin.test.assertTrue
