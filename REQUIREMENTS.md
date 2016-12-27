@@ -10,6 +10,7 @@
 - A board has a width and a height
 - Any cell can be retrieved from the board by specifying an x and y coordinate
     - The top left cell of the board is x=0,y=0. x increases horizontally, y increases vertically
+- Attempting to access a cell outside of the board throws an exception
 
 - A board has an iteration count
 - The iteration count starts at 0
@@ -32,6 +33,6 @@
   - For a cell that is ALIVE:
       - Each cell with one or no living neighbors dies, as if by solitude.
       - Each cell with four or more living neighbors dies, as if by overpopulation.
+      - Any cell that touches one or more board edges dies
   - For a cell that is DEAD:
       - Each cell with exactly three living neighbors becomes populated.
-
