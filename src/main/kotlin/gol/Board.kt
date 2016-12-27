@@ -1,5 +1,6 @@
 package gol
 
+import java.security.SecureRandom
 import java.util.*
 
 /** Board containing the grid of cells
@@ -65,4 +66,24 @@ class Board(val width: Int,
             throw IndexOutOfBoundsException("Requested index is outside of board: $x, $y")
         }
     }
+
+    companion object {
+
+        val randomGenerator: SecureRandom = SecureRandom()
+
+        /**
+         * Create a new board at iteration 0 and initialize it with up to n living cells
+         */
+        fun random(width: Int, height: Int, nInitialCells: Int): Board {
+            val board = Board(width, height)
+            for (i in 0..nInitialCells) {
+                val x = randomGenerator.nextInt(width)
+                val y = randomGenerator.nextInt(height)
+                board.setCellAt(x, y, Cell(CellMortality.Alive))
+            }
+            return board
+        }
+
+    }
 }
+
