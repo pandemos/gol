@@ -1,10 +1,12 @@
 # Game of Life Requirements
 
-## Cell
+## Implemented
+
+### Cell
 
 - A cell has two states, ALIVE and DEAD
 
-## Board
+### Board
 
 - A board has a width and a height
 - Any cell can be retrieved from the board by specifying an x and y coordinate
@@ -21,6 +23,11 @@
 - Board state can be loaded from an RLE string: http://conwaylife.com/wiki/Run_Length_Encoded
 - Board rules can be saved as a rulestring: http://conwaylife.com/wiki/Rulestring#Rules
 - Board rules can be loaded from a rulestring: http://conwaylife.com/wiki/Rulestring#Rules
+
+## TODO
+
+### Board
+
 - A board must be able to, for any cell, determine the number of living neighbors
     - A neighbor is a cell with an adjoining edge or corner
 - A board has a set of rules:
