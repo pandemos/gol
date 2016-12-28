@@ -22,10 +22,6 @@ class PlaintextBoardFormat(val board: Board, val name: String = "") : Format<Pla
         return sb.toString()
     }
 
-    override fun deserialize(repr: String): PlaintextBoardFormat {
-        throw UnsupportedOperationException("not implemented")
-    }
-
     override fun toString(): String {
         return serialize()
     }

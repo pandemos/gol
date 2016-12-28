@@ -12,7 +12,15 @@ class RleHeaderFormat(val width: Int, val height: Int, val rule: String) : Forma
 
     }
 
-    override fun deserialize(repr: String): RleHeaderFormat {
-        throw UnsupportedOperationException("not implemented")
+    companion object {
+
+        fun deserialize(repr: String): RleHeaderFormat {
+            val keyValuePairs = repr.split(',').map { entry ->
+                entry.split('=')
+            }.map { kvp ->
+                listOf(kvp[0].trim(), kvp[1].trim())
+            }
+            return RleHeaderFormat(keyValuePairs[0][1].toInt(), keyValuePairs[1][1].toInt(), keyValuePairs[2][1])
+        }
     }
 }

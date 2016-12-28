@@ -8,6 +8,5 @@ import gol.board.Board
 interface Format<out T> {
 
     fun serialize(): String
-    fun deserialize(repr: String): T
 
 }

@@ -11,10 +11,6 @@ class PlaintextHeaderFormat(val name: String) : Format<PlaintextHeaderFormat> {
         return "!Name: $name\n!\n"
     }
 
-    override fun deserialize(repr: String): PlaintextHeaderFormat {
-        throw UnsupportedOperationException("not implemented")
-    }
-
     override fun toString(): String {
         return serialize()
     }

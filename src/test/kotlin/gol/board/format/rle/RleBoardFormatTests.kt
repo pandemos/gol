@@ -113,4 +113,86 @@ class RleBoardFormatTests {
         assertEquals("x = 3, y = 3, rule = B3/S23\nbo$2bo$3o!", RleBoardFormat(board).serialize())
     }
 
+    /**
+     * Header can be deserialized from string
+     */
+    @Test
+    fun headerDeserialization() {
+        assertEquals(3, RleHeaderFormat.deserialize("x = 3, y = 4, rule = B3/S23\n").width)
+        assertEquals(4, RleHeaderFormat.deserialize("x = 3, y = 4, rule = B3/S23\n").height)
+        assertEquals("B3/S23", RleHeaderFormat.deserialize("x = 3, y = 4, rule = B3/S23\n").rule)
+    }
+
+    /**
+     * Cells can be deserialized from string
+     */
+    @Test
+    fun cellDeserialization() {
+        assertEquals(CellMortality.Alive, RleCellFormat.deserialize("o").cell.mortality)
+        assertEquals(CellMortality.Dead, RleCellFormat.deserialize("b").cell.mortality)
+    }
+
+    /**
+     * Rows of cells can be deserialized from string
+     */
+    @Test
+    fun rowDeserialization() {
+        var board = Board(3, 1)
+        assertEquals(CellMortality.Alive, RleRowFormat.deserialize("ooo$", 0, board).board.cellAt(0, 0).mortality)
+        assertEquals(CellMortality.Alive, RleRowFormat.deserialize("ooo$", 0, board).board.cellAt(1, 0).mortality)
+        assertEquals(CellMortality.Alive, RleRowFormat.deserialize("ooo$", 0, board).board.cellAt(2, 0).mortality)
+
+        board = Board(3, 1)
+        assertEquals(CellMortality.Alive, RleRowFormat.deserialize("obo$", 0, board).board.cellAt(0, 0).mortality)
+        assertEquals(CellMortality.Dead, RleRowFormat.deserialize("obo$", 0, board).board.cellAt(1, 0).mortality)
+        assertEquals(CellMortality.Alive, RleRowFormat.deserialize("obo$", 0, board).board.cellAt(2, 0).mortality)
+    }
+
+    /**
+     * Board can be deserialized from string
+     */
+    @Test
+    fun boardDeserializationPartialRow() {
+        var deserializedBoard = RleBoardFormat.deserialize("x = 3, y = 1, rule = B3/S23\nbo!").board
+        assertEquals(CellMortality.Dead, deserializedBoard.cellAt(0, 0).mortality)
+        assertEquals(CellMortality.Alive, deserializedBoard.cellAt(1, 0).mortality)
+        assertEquals(CellMortality.Dead, deserializedBoard.cellAt(2, 0).mortality)
+    }
+    /**
+     * Board can be deserialized from string
+     */
+    @Test
+    fun boardDeserializationMergedRow() {
+        var deserializedBoard = RleBoardFormat.deserialize("x = 3, y = 1, rule = B3/S23\n2bo!").board
+        assertEquals(CellMortality.Dead, deserializedBoard.cellAt(0, 0).mortality)
+        assertEquals(CellMortality.Dead, deserializedBoard.cellAt(1, 0).mortality)
+        assertEquals(CellMortality.Alive, deserializedBoard.cellAt(2, 0).mortality)
+    }
+    /**
+     * Board can be deserialized from string
+     */
+    @Test
+    fun boardDeserializationFullRow() {
+        var deserializedBoard = RleBoardFormat.deserialize("x = 3, y = 3, rule = B3/S23\n3o!").board
+        assertEquals(CellMortality.Alive, deserializedBoard.cellAt(0, 0).mortality)
+        assertEquals(CellMortality.Alive, deserializedBoard.cellAt(1, 0).mortality)
+        assertEquals(CellMortality.Alive, deserializedBoard.cellAt(2, 0).mortality)
+    }
+    /**
+     * Board can be deserialized from string
+     */
+    @Test
+    fun boardDeserialization() {
+        var deserializedBoard = RleBoardFormat.deserialize("x = 3, y = 3, rule = B3/S23\nbo$2bo$3o!").board
+        assertEquals(CellMortality.Dead, deserializedBoard.cellAt(0, 0).mortality)
+        assertEquals(CellMortality.Alive, deserializedBoard.cellAt(1, 0).mortality)
+        assertEquals(CellMortality.Dead, deserializedBoard.cellAt(2, 0).mortality)
+        assertEquals(CellMortality.Dead, deserializedBoard.cellAt(0, 1).mortality)
+        assertEquals(CellMortality.Dead, deserializedBoard.cellAt(1, 1).mortality)
+        assertEquals(CellMortality.Alive, deserializedBoard.cellAt(2, 1).mortality)
+        assertEquals(CellMortality.Alive, deserializedBoard.cellAt(0, 2).mortality)
+        assertEquals(CellMortality.Alive, deserializedBoard.cellAt(1, 2).mortality)
+        assertEquals(CellMortality.Alive, deserializedBoard.cellAt(2, 2).mortality)
+
+    }
 }

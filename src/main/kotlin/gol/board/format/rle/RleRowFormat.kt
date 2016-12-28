@@ -59,10 +59,6 @@ class RleRowFormat(val board: Board, val y: Int, val last: Boolean = false) : Fo
         return sb.toString()
     }
 
-    override fun deserialize(repr: String): RleRowFormat {
-        throw UnsupportedOperationException("not implemented")
-    }
-
     companion object {
 
         /**
@@ -72,6 +68,51 @@ class RleRowFormat(val board: Board, val y: Int, val last: Boolean = false) : Fo
             return (0 until board.height).map { y ->
                 RleRowFormat(board, y, y == board.height-1)
             }
+        }
+
+        fun deserialize(repr: String, index: Int, board: Board): RleRowFormat {
+            var cells = mutableListOf<RleCellFormat>()
+            var parts = mutableListOf<String>()
+            var countString = ""
+            repr.toCharArray().map { c ->
+                when {
+                    c == 'b' && countString == "" -> parts.add(c.toString())
+                    c == 'b' && countString != "" -> {
+                        parts.add("${countString.toInt()}$c")
+                        countString = ""
+                    }
+                    c == 'o' && countString == "" -> parts.add(c.toString())
+                    c == 'o' && countString != "" -> {
+                        parts.add("${countString.toInt()}$c")
+                        countString = ""
+                    }
+                    else -> countString += c.toString()
+                }
+            }
+
+            parts.map { s ->
+                 when {
+                     s == "b" -> cells.add(RleCellFormat(Cell(CellMortality.Dead)))
+                     s == "o" -> cells.add(RleCellFormat(Cell(CellMortality.Alive)))
+                     s.last() == 'b' -> {
+                         (0 until s.substring(0, s.length-1).toInt()).map {
+                             cells.add(RleCellFormat(Cell(CellMortality.Dead)))
+                         }
+                     }
+                     s.last() == 'o' -> {
+                         (0 until s.substring(0, s.length-1).toInt()).map {
+                             cells.add(RleCellFormat(Cell(CellMortality.Alive)))
+                         }
+                     }
+                     else -> null
+                 }
+            }
+
+            (0 until cells.size).map { x ->
+                board.setCellAt(x, index, cells[x].cell)
+            }
+
+            return RleRowFormat(board, index)
         }
 
     }

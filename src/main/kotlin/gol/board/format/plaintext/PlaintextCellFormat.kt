@@ -18,10 +18,6 @@ class PlaintextCellFormat(val cell: Cell) : Format<PlaintextCellFormat> {
         }
     }
 
-    override fun deserialize(repr: String): PlaintextCellFormat {
-        throw UnsupportedOperationException("not implemented")
-    }
-
     override fun toString(): String {
         return serialize()
     }
