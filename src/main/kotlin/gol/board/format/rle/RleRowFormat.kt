@@ -1,16 +1,15 @@
 package gol.board.format.rle
 
 import gol.board.Board
-import gol.board.format.Format
+import gol.board.format.FormatBase
 import gol.cell.Cell
-import gol.cell.CellMortality
 import gol.cell.DeadCell
 import gol.cell.LiveCell
 
 /**
  * Created by aknauss on 12/27/16.
  */
-class RleRowFormat(val board: Board, val y: Int, val last: Boolean = false) : Format<RleRowFormat> {
+class RleRowFormat(val board: Board, val y: Int, val last: Boolean = false) : FormatBase<RleRowFormat>() {
 
     override fun serialize(): String {
 

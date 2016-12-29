@@ -2,8 +2,7 @@ package gol
 
 import gol.board.Board
 import gol.board.format.plaintext.PlaintextBoardFormat
-import gol.cell.Cell
-import gol.cell.CellMortality
+import gol.board.format.rle.RleBoardFormat
 import gol.cell.LiveCell
 
 /**
@@ -18,6 +17,9 @@ fun main(args: Array<String>) {
         board.step()
     }
     println(PlaintextBoardFormat(board, "100 x 100 random walk"))
+    println(RleBoardFormat(board))
+    println()
+    println()
 
     val board2 = Board(3, 3)
     board2.setCellAt(1, 0, LiveCell())
@@ -27,5 +29,6 @@ fun main(args: Array<String>) {
     board2.setCellAt(2, 2, LiveCell())
 
     println(PlaintextBoardFormat(board2, "Glider"))
+    println(RleBoardFormat(board2))
 }
 

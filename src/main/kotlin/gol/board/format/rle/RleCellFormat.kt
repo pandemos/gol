@@ -1,6 +1,6 @@
 package gol.board.format.rle
 
-import gol.board.format.Format
+import gol.board.format.FormatBase
 import gol.cell.Cell
 import gol.cell.CellMortality
 import gol.cell.DeadCell
@@ -9,7 +9,7 @@ import gol.cell.LiveCell
 /**
  * Created by aknauss on 12/27/16.
  */
-class RleCellFormat(val cell: Cell) : Format<RleCellFormat> {
+class RleCellFormat(val cell: Cell) : FormatBase<RleCellFormat>() {
 
     override fun serialize(): String {
         return when {

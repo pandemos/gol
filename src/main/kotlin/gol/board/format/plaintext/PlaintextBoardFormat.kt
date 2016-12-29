@@ -1,12 +1,12 @@
 package gol.board.format.plaintext
 
-import gol.board.format.Format
 import gol.board.Board
+import gol.board.format.FormatBase
 
 /**
  * Created by aknauss on 12/27/16.
  */
-class PlaintextBoardFormat(val board: Board, val name: String = "") : Format<PlaintextBoardFormat> {
+class PlaintextBoardFormat(val board: Board, val name: String = "") : FormatBase<PlaintextBoardFormat>() {
 
     override fun serialize(): String {
         var sb = StringBuilder()
@@ -20,9 +20,5 @@ class PlaintextBoardFormat(val board: Board, val name: String = "") : Format<Pla
             sb.append("\n")
         }
         return sb.toString()
-    }
-
-    override fun toString(): String {
-        return serialize()
     }
 }

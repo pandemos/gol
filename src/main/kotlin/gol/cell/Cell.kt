@@ -5,12 +5,26 @@ package gol.cell
  */
 interface Cell {
     val mortality: CellMortality
+
+    fun isAlive(): Boolean
+    fun isDead(): Boolean
 }
 
-class DeadCell : Cell {
+abstract class CellBase : Cell {
+
+    override fun isAlive(): Boolean {
+        return mortality == CellMortality.Alive
+    }
+
+    override fun isDead(): Boolean {
+        return mortality == CellMortality.Dead
+    }
+}
+
+class DeadCell : CellBase() {
     override val mortality = CellMortality.Dead
 }
 
-class LiveCell : Cell {
+class LiveCell : CellBase() {
     override val mortality: CellMortality = CellMortality.Alive
 }

@@ -21,7 +21,7 @@ class Board(val width: Int,
      * Set the cell at the specified coordinate to the specified cell instance
      */
     fun setCellAt(x: Int, y: Int, cell: Cell) {
-        if (cell.mortality == CellMortality.Dead) {
+        if (cell.isDead()) {
             return
         }
         checkCellRange(x, y)
