@@ -31,14 +31,6 @@ class RleBoardFormat(val board: Board) : Format<RleBoardFormat> {
                 RleRowFormat.deserialize(cellParts[i], i, board)
             }
 
-            /*rows.map { row ->
-
-                (0 until row.board.width).map { x ->
-                    board.setCellAt(x, row.y, row.board.cellAt(x, 0))
-                }
-
-            }*/
-
             return RleBoardFormat(board)
         }
     }
