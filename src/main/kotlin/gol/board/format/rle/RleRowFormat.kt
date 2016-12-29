@@ -4,6 +4,8 @@ import gol.board.Board
 import gol.board.format.Format
 import gol.cell.Cell
 import gol.cell.CellMortality
+import gol.cell.DeadCell
+import gol.cell.LiveCell
 
 /**
  * Created by aknauss on 12/27/16.
@@ -92,16 +94,16 @@ class RleRowFormat(val board: Board, val y: Int, val last: Boolean = false) : Fo
 
             parts.map { s ->
                  when {
-                     s == "b" -> cells.add(RleCellFormat(Cell(CellMortality.Dead)))
-                     s == "o" -> cells.add(RleCellFormat(Cell(CellMortality.Alive)))
+                     s == "b" -> cells.add(RleCellFormat(DeadCell()))
+                     s == "o" -> cells.add(RleCellFormat(LiveCell()))
                      s.last() == 'b' -> {
                          (0 until s.substring(0, s.length-1).toInt()).map {
-                             cells.add(RleCellFormat(Cell(CellMortality.Dead)))
+                             cells.add(RleCellFormat(DeadCell()))
                          }
                      }
                      s.last() == 'o' -> {
                          (0 until s.substring(0, s.length-1).toInt()).map {
-                             cells.add(RleCellFormat(Cell(CellMortality.Alive)))
+                             cells.add(RleCellFormat(LiveCell()))
                          }
                      }
                      else -> null

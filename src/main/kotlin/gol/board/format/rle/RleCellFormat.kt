@@ -3,6 +3,8 @@ package gol.board.format.rle
 import gol.board.format.Format
 import gol.cell.Cell
 import gol.cell.CellMortality
+import gol.cell.DeadCell
+import gol.cell.LiveCell
 
 /**
  * Created by aknauss on 12/27/16.
@@ -20,9 +22,9 @@ class RleCellFormat(val cell: Cell) : Format<RleCellFormat> {
     companion object {
         fun deserialize(repr: String): RleCellFormat {
             return when {
-                repr == "b" -> RleCellFormat(Cell(CellMortality.Dead))
-                repr == "o" -> RleCellFormat(Cell(CellMortality.Alive))
-                else -> RleCellFormat(Cell(CellMortality.Alive)) // This is what the spec requires
+                repr == "b" -> RleCellFormat(DeadCell())
+                repr == "o" -> RleCellFormat(LiveCell())
+                else -> RleCellFormat(LiveCell()) // This is what the spec requires
             }
         }
     }

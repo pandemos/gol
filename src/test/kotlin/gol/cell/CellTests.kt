@@ -15,7 +15,7 @@ class CellTests {
      */
     @Test
     fun canBeAlive() {
-        val cell = Cell(CellMortality.Alive)
+        val cell = LiveCell()
         assertEquals(CellMortality.Alive, cell.mortality)
     }
 
@@ -24,7 +24,7 @@ class CellTests {
      */
     @Test
     fun canBeDead() {
-        val cell = Cell(CellMortality.Dead)
+        val cell = DeadCell()
         assertEquals(CellMortality.Dead, cell.mortality)
     }
 

@@ -3,6 +3,8 @@ package gol.board
 import gol.board.Board
 import gol.cell.Cell
 import gol.cell.CellMortality
+import gol.cell.DeadCell
+import gol.cell.LiveCell
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Rule
@@ -26,7 +28,7 @@ class BoardTests {
      */
     @Test
     fun canRetrieveCellByCoordinate() {
-        val cell = Cell(CellMortality.Alive)
+        val cell = LiveCell()
         val board = Board(width = 10, height = 10)
 
         // Living cell
@@ -43,15 +45,15 @@ class BoardTests {
     @Test
     fun onlyStoreLivingCells() {
         val board = Board(width = 3, height = 3)
-        val cell00 = Cell(CellMortality.Dead)
-        val cell10 = Cell(CellMortality.Dead)
-        val cell20 = Cell(CellMortality.Dead)
-        val cell01 = Cell(CellMortality.Dead)
-        val cell11 = Cell(CellMortality.Alive)
-        val cell21 = Cell(CellMortality.Dead)
-        val cell02 = Cell(CellMortality.Dead)
-        val cell12 = Cell(CellMortality.Dead)
-        val cell22 = Cell(CellMortality.Dead)
+        val cell00 = DeadCell()
+        val cell10 = DeadCell()
+        val cell20 = DeadCell()
+        val cell01 = DeadCell()
+        val cell11 = LiveCell()
+        val cell21 = DeadCell()
+        val cell02 = DeadCell()
+        val cell12 = DeadCell()
+        val cell22 = DeadCell()
 
         board.setCellAt(0, 0, cell00)
         board.setCellAt(1, 0, cell10)
@@ -137,11 +139,11 @@ class BoardTests {
         val board = Board(10, 10)
 
         assertFailsWith(IndexOutOfBoundsException::class) {
-            board.setCellAt(-1, -1, Cell(CellMortality.Alive))
+            board.setCellAt(-1, -1, LiveCell())
         }
 
         assertFailsWith(IndexOutOfBoundsException::class) {
-            board.setCellAt(board.width, board.height, Cell(CellMortality.Alive))
+            board.setCellAt(board.width, board.height, LiveCell())
         }
 
         assertFailsWith(IndexOutOfBoundsException::class) {
@@ -160,7 +162,7 @@ class BoardTests {
     fun determineNumberOfLiving0Neighbors() {
 
         val board = Board(3, 3)
-        board.setCellAt(1, 1, Cell(CellMortality.Alive))
+        board.setCellAt(1, 1, LiveCell())
         assertEquals(0, board.livingNeighbors(1, 1))
     }
 /*
@@ -171,23 +173,23 @@ class BoardTests {
     fun determineNumberOfLiving1NeighborEdge() {
 
         var board = Board(3, 3)
-        board.setCellAt(1, 1, Cell(CellMortality.Alive))
-        board.setCellAt(1, 0, Cell(CellMortality.Alive))
+        board.setCellAt(1, 1, LiveCell())
+        board.setCellAt(1, 0, LiveCell())
         assertEquals(1, board.livingNeighbors(1, 1))
 
         board = Board(3, 3)
-        board.setCellAt(1, 1, Cell(CellMortality.Alive))
-        board.setCellAt(0, 1, Cell(CellMortality.Alive))
+        board.setCellAt(1, 1, LiveCell())
+        board.setCellAt(0, 1, LiveCell())
         assertEquals(1, board.livingNeighbors(1, 1))
 
         board = Board(3, 3)
-        board.setCellAt(1, 1, Cell(CellMortality.Alive))
-        board.setCellAt(2, 1, Cell(CellMortality.Alive))
+        board.setCellAt(1, 1, LiveCell())
+        board.setCellAt(2, 1, LiveCell())
         assertEquals(1, board.livingNeighbors(1, 1))
 
         board = Board(3, 3)
-        board.setCellAt(1, 1, Cell(CellMortality.Alive))
-        board.setCellAt(1, 2, Cell(CellMortality.Alive))
+        board.setCellAt(1, 1, LiveCell())
+        board.setCellAt(1, 2, LiveCell())
         assertEquals(1, board.livingNeighbors(1, 1))
 
     }
@@ -199,15 +201,15 @@ class BoardTests {
     fun determineNumberOfLiving2NeighborEdge() {
 
         var board = Board(3, 3)
-        board.setCellAt(1, 1, Cell(CellMortality.Alive))
-        board.setCellAt(1, 0, Cell(CellMortality.Alive))
-        board.setCellAt(0, 1, Cell(CellMortality.Alive))
+        board.setCellAt(1, 1, LiveCell())
+        board.setCellAt(1, 0, LiveCell())
+        board.setCellAt(0, 1, LiveCell())
         assertEquals(2, board.livingNeighbors(1, 1))
 
         board = Board(3, 3)
-        board.setCellAt(1, 1, Cell(CellMortality.Alive))
-        board.setCellAt(2, 1, Cell(CellMortality.Alive))
-        board.setCellAt(1, 2, Cell(CellMortality.Alive))
+        board.setCellAt(1, 1, LiveCell())
+        board.setCellAt(2, 1, LiveCell())
+        board.setCellAt(1, 2, LiveCell())
         assertEquals(2, board.livingNeighbors(1, 1))
 
     }
@@ -218,23 +220,23 @@ class BoardTests {
     fun determineNumberOfLiving1NeighborCorner() {
 
         var board = Board(3, 3)
-        board.setCellAt(1, 1, Cell(CellMortality.Alive))
-        board.setCellAt(0, 0, Cell(CellMortality.Alive))
+        board.setCellAt(1, 1, LiveCell())
+        board.setCellAt(0, 0, LiveCell())
         assertEquals(1, board.livingNeighbors(1, 1))
 
         board = Board(3, 3)
-        board.setCellAt(1, 1, Cell(CellMortality.Alive))
-        board.setCellAt(0, 2, Cell(CellMortality.Alive))
+        board.setCellAt(1, 1, LiveCell())
+        board.setCellAt(0, 2, LiveCell())
         assertEquals(1, board.livingNeighbors(1, 1))
 
         board = Board(3, 3)
-        board.setCellAt(1, 1, Cell(CellMortality.Alive))
-        board.setCellAt(2, 0, Cell(CellMortality.Alive))
+        board.setCellAt(1, 1, LiveCell())
+        board.setCellAt(2, 0, LiveCell())
         assertEquals(1, board.livingNeighbors(1, 1))
 
         board = Board(3, 3)
-        board.setCellAt(1, 1, Cell(CellMortality.Alive))
-        board.setCellAt(2, 2, Cell(CellMortality.Alive))
+        board.setCellAt(1, 1, LiveCell())
+        board.setCellAt(2, 2, LiveCell())
         assertEquals(1, board.livingNeighbors(1, 1))
 
     }
@@ -246,15 +248,15 @@ class BoardTests {
     fun determineNumberOfLiving2NeighborCorner() {
 
         var board = Board(3, 3)
-        board.setCellAt(1, 1, Cell(CellMortality.Alive))
-        board.setCellAt(0, 0, Cell(CellMortality.Alive))
-        board.setCellAt(2, 2, Cell(CellMortality.Alive))
+        board.setCellAt(1, 1, LiveCell())
+        board.setCellAt(0, 0, LiveCell())
+        board.setCellAt(2, 2, LiveCell())
         assertEquals(2, board.livingNeighbors(1, 1))
 
         board = Board(3, 3)
-        board.setCellAt(1, 1, Cell(CellMortality.Alive))
-        board.setCellAt(2, 0, Cell(CellMortality.Alive))
-        board.setCellAt(0, 2, Cell(CellMortality.Alive))
+        board.setCellAt(1, 1, LiveCell())
+        board.setCellAt(2, 0, LiveCell())
+        board.setCellAt(0, 2, LiveCell())
         assertEquals(2, board.livingNeighbors(1, 1))
 
     }

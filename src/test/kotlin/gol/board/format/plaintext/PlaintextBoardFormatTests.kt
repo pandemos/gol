@@ -6,6 +6,8 @@ import gol.cell.Cell
 import gol.cell.CellMortality
 import gol.board.format.plaintext.PlaintextCellFormat
 import gol.board.format.plaintext.PlaintextHeaderFormat
+import gol.cell.DeadCell
+import gol.cell.LiveCell
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -32,7 +34,7 @@ class PlaintextBoardFormatTests {
      */
     @Test
     fun livingCellSerialization() {
-        assertEquals("O", PlaintextCellFormat(Cell(CellMortality.Alive)).serialize())
+        assertEquals("O", PlaintextCellFormat(LiveCell()).serialize())
     }
 
     /**
@@ -40,7 +42,7 @@ class PlaintextBoardFormatTests {
      */
     @Test
     fun deadCellSerialization() {
-        assertEquals(".", PlaintextCellFormat(Cell(CellMortality.Dead)).serialize())
+        assertEquals(".", PlaintextCellFormat(DeadCell()).serialize())
     }
 
     /**
@@ -49,13 +51,13 @@ class PlaintextBoardFormatTests {
     @Test
     fun boardSerialization() {
         val board: Board = Board(3, 3)
-        board.setCellAt(1, 0, Cell(CellMortality.Alive))
+        board.setCellAt(1, 0, LiveCell())
 
-        board.setCellAt(2, 1, Cell(CellMortality.Alive))
+        board.setCellAt(2, 1, LiveCell())
 
-        board.setCellAt(0, 2, Cell(CellMortality.Alive))
-        board.setCellAt(1, 2, Cell(CellMortality.Alive))
-        board.setCellAt(2, 2, Cell(CellMortality.Alive))
+        board.setCellAt(0, 2, LiveCell())
+        board.setCellAt(1, 2, LiveCell())
+        board.setCellAt(2, 2, LiveCell())
         assertEquals("!Name: name\n!\n.O.\n..O\nOOO\n", PlaintextBoardFormat(board, "name").serialize())
     }
 

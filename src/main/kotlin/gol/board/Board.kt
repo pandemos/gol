@@ -2,6 +2,8 @@ package gol.board
 
 import gol.cell.Cell
 import gol.cell.CellMortality
+import gol.cell.DeadCell
+import gol.cell.LiveCell
 import gol.rule.Rules
 import java.security.SecureRandom
 import java.util.*
@@ -37,7 +39,7 @@ class Board(val width: Int,
         if (cell != null) {
             return cell
         }
-        return Cell(CellMortality.Dead)
+        return DeadCell()
     }
 
     /**
@@ -84,7 +86,7 @@ class Board(val width: Int,
             for (i in 0..nInitialCells) {
                 val x = randomGenerator.nextInt(width)
                 val y = randomGenerator.nextInt(height)
-                board.setCellAt(x, y, Cell(CellMortality.Alive))
+                board.setCellAt(x, y, LiveCell())
             }
             return board
         }
