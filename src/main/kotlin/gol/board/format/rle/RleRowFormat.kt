@@ -48,7 +48,7 @@ class RleRowFormat(val board: Board, val y: Int, val last: Boolean = false) : Fo
 
         }
 
-        while (sb.last() == 'b' || (sb.last() >= '0' && sb.last() <= '9')) {
+        while (sb.length > 0 && (sb.last() == 'b' || (sb.last() >= '0' && sb.last() <= '9'))) {
             sb.deleteCharAt(sb.length-1)
         }
 

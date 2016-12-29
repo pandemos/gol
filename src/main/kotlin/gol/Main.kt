@@ -9,11 +9,11 @@ import gol.cell.LiveCell
  * Created by aknauss on 12/21/16.
  */
 fun main(args: Array<String>) {
-    /*val width = 100
+    val width = 100
     val height = 100
-    val nCells = 750
-    val nSteps = 1
-    val board = Board.random(width, height, nCells)
+    val nCells = 900
+    val nSteps = 100
+    var board = Board.random(width, height, nCells)
     board.rules.whenApplied { Board ->
         println(board.iteration)
     }
@@ -24,9 +24,9 @@ fun main(args: Array<String>) {
     println(RleBoardFormat(board))
     println()
     println()
-    */
 
-    var board = Board(3, 3)
+
+    board = Board(3, 3)
     board.setCellAt(0, 1, LiveCell())
     board.setCellAt(1, 1, LiveCell())
     board.setCellAt(2, 1, LiveCell())
