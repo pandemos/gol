@@ -1,11 +1,11 @@
 package gol.board.format.rle
 
-import gol.board.format.Format
+import gol.board.format.FormatBase
 
 /**
  * Created by aknauss on 12/27/16.
  */
-class RleHeaderFormat(val width: Int, val height: Int, val rule: String) : Format<RleHeaderFormat> {
+class RleHeaderFormat(val width: Int, val height: Int, val rule: String) : FormatBase<RleHeaderFormat>() {
 
     override fun serialize(): String {
         return "x = $width, y = $height, rule = $rule\n"

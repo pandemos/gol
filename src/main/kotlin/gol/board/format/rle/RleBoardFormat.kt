@@ -10,8 +10,8 @@ import gol.rule.Rules
 class RleBoardFormat(val board: Board) : FormatBase<RleBoardFormat>() {
     override fun serialize(): String {
         return StringBuilder()
-                .append(RleHeaderFormat(board.width, board.height, board.rules.ruleString).serialize())
-                .append(RleRowFormat.fromBoard(board).map { row -> row.serialize() }.joinToString(separator=""))
+                .append(RleHeaderFormat(board.width, board.height, board.rules.ruleString))
+                .append(RleRowFormat.fromBoard(board).map { row -> row }.joinToString(separator=""))
                 .toString()
     }
 

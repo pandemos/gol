@@ -9,14 +9,18 @@ import gol.cell.LiveCell
  * Created by aknauss on 12/21/16.
  */
 fun main(args: Array<String>) {
-    val board = Board.random(100, 100, 750)
+    val width = 100
+    val height = 100
+    val nCells = 750
+    val nSteps = 100000
+    val board = Board.random(width, height, nCells)
     board.rules.whenApplied { Board ->
         println(board.iteration)
     }
-    for (i in 0..100000) {
+    for (i in 0..nSteps) {
         board.step()
     }
-    println(PlaintextBoardFormat(board, "100 x 100 random walk"))
+    println(PlaintextBoardFormat(board, "$width x $height with $nCells random living cells after $nSteps steps"))
     println(RleBoardFormat(board))
     println()
     println()

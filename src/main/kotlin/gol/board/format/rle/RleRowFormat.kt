@@ -25,10 +25,10 @@ class RleRowFormat(val board: Board, val y: Int, val last: Boolean = false) : Fo
             when {
                 nextCell == null -> {
                     if (runSize > 1) {
-                        sb.append("${runSize}${RleCellFormat(thisCell).serialize()}")
+                        sb.append("${runSize}${RleCellFormat(thisCell)}")
                     }
                     else {
-                        sb.append("${RleCellFormat(thisCell).serialize()}")
+                        sb.append("${RleCellFormat(thisCell)}")
                     }
                 }
                 thisCell.mortality == nextCell.mortality -> {
@@ -37,11 +37,11 @@ class RleRowFormat(val board: Board, val y: Int, val last: Boolean = false) : Fo
                 }
                 else -> {
                     if (runSize > 1) {
-                        sb.append("${runSize}${RleCellFormat(thisCell).serialize()}")
+                        sb.append("${runSize}${RleCellFormat(thisCell)}")
                         runSize = 1
                     }
                     else {
-                        sb.append("${RleCellFormat(thisCell).serialize()}")
+                        sb.append(RleCellFormat(thisCell))
                     }
                 }
             }
@@ -60,6 +60,7 @@ class RleRowFormat(val board: Board, val y: Int, val last: Boolean = false) : Fo
         return sb.toString()
     }
 
+    @Suppress("IMPLICIT_CAST_TO_ANY")
     companion object {
 
         /**
