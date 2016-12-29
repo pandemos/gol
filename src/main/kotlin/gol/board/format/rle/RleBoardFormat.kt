@@ -27,7 +27,7 @@ class RleBoardFormat(val board: Board) : Format<RleBoardFormat> {
 
             val board = Board(header.width, header.height, rules = Rules(header.rule))
 
-            var rows = (0 until cellParts.size).map { i ->
+            (0 until cellParts.size).map { i ->
                 RleRowFormat.deserialize(cellParts[i], i, board)
             }
 
