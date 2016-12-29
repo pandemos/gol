@@ -2,6 +2,8 @@ package gol.board.format.rle
 
 import gol.board.Board
 import gol.board.format.FormatBase
+import gol.rule.ConwayRules
+import gol.rule.GenericRules
 import gol.rule.Rules
 
 /**
@@ -23,7 +25,7 @@ class RleBoardFormat(val board: Board) : FormatBase<RleBoardFormat>() {
             var cellParts = parts.last().split("$")
             var header = RleHeaderFormat.deserialize(parts.first())
 
-            val board = Board(header.width, header.height, rules = Rules(header.rule))
+            val board = Board(header.width, header.height, rules = GenericRules(header.rule))
 
             (0 until cellParts.size).map { i ->
                 RleRowFormat.deserialize(cellParts[i], i, board)

@@ -9,10 +9,10 @@ import gol.cell.LiveCell
  * Created by aknauss on 12/21/16.
  */
 fun main(args: Array<String>) {
-    val width = 100
+    /*val width = 100
     val height = 100
     val nCells = 750
-    val nSteps = 100000
+    val nSteps = 1
     val board = Board.random(width, height, nCells)
     board.rules.whenApplied { Board ->
         println(board.iteration)
@@ -24,15 +24,34 @@ fun main(args: Array<String>) {
     println(RleBoardFormat(board))
     println()
     println()
+    */
 
-    val board2 = Board(3, 3)
-    board2.setCellAt(1, 0, LiveCell())
-    board2.setCellAt(2, 1, LiveCell())
-    board2.setCellAt(0, 2, LiveCell())
-    board2.setCellAt(1, 2, LiveCell())
-    board2.setCellAt(2, 2, LiveCell())
+    var board = Board(3, 3)
+    board.setCellAt(0, 1, LiveCell())
+    board.setCellAt(1, 1, LiveCell())
+    board.setCellAt(2, 1, LiveCell())
+    println(PlaintextBoardFormat(board, "Blinker"))
+    board.step()
+    println(PlaintextBoardFormat(board, "Blinker"))
+    board.step()
+    println(PlaintextBoardFormat(board, "Blinker"))
 
-    println(PlaintextBoardFormat(board2, "Glider"))
-    println(RleBoardFormat(board2))
+    board = Board(5, 5)
+    board.setCellAt(1, 0, LiveCell())
+    board.setCellAt(2, 1, LiveCell())
+    board.setCellAt(0, 2, LiveCell())
+    board.setCellAt(1, 2, LiveCell())
+    board.setCellAt(2, 2, LiveCell())
+
+    println(PlaintextBoardFormat(board, "Glider"))
+    board.step()
+    println(PlaintextBoardFormat(board, "Glider"))
+    board.step()
+    println(PlaintextBoardFormat(board, "Glider"))
+    board.step()
+    println(PlaintextBoardFormat(board, "Glider"))
+    board.step()
+    println(PlaintextBoardFormat(board, "Glider"))
+    //println(RleBoardFormat(board))
 }
 

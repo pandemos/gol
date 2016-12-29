@@ -7,7 +7,7 @@ package gol.rule.format
 class RleRuleFormat(val ruleString: String,
                     var valid: Boolean = false,
                     override var birthNeighbors: CharArray = CharArray(0),
-                    override var deathNeighbors: CharArray = CharArray(0)) : RuleFormat {
+                    override var sustainNeighbors: CharArray = CharArray(0)) : RuleFormat {
 
     private val pattern = "B([0-9]+)/S([0-9]+)".toRegex()
 
@@ -15,7 +15,7 @@ class RleRuleFormat(val ruleString: String,
         val ruleValues = pattern.matchEntire(ruleString)?.groupValues
         if (ruleValues != null) {
             birthNeighbors = ruleValues.get(1).toCharArray()
-            deathNeighbors = ruleValues.get(2).toCharArray()
+            sustainNeighbors = ruleValues.get(2).toCharArray()
             valid = true
         }
     }

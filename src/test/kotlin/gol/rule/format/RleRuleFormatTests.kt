@@ -40,18 +40,18 @@ class RleRuleFormatTests {
      * Must have a list of number of living neighbors to cause death
      */
     @Test
-    fun listDeathNeighbors() {
+    fun listSustainNeighbors() {
         var ruleFormat = RleRuleFormat("B3/S23")
         assertTrue(ruleFormat.valid)
-        assertEquals('2', ruleFormat.deathNeighbors[0])
-        assertEquals('3', ruleFormat.deathNeighbors[1])
+        assertEquals('2', ruleFormat.sustainNeighbors[0])
+        assertEquals('3', ruleFormat.sustainNeighbors[1])
 
         ruleFormat = RleRuleFormat("B137/S2459")
         assertTrue(ruleFormat.valid)
-        assertEquals('2', ruleFormat.deathNeighbors[0])
-        assertEquals('4', ruleFormat.deathNeighbors[1])
-        assertEquals('5', ruleFormat.deathNeighbors[2])
-        assertEquals('9', ruleFormat.deathNeighbors[3])
+        assertEquals('2', ruleFormat.sustainNeighbors[0])
+        assertEquals('4', ruleFormat.sustainNeighbors[1])
+        assertEquals('5', ruleFormat.sustainNeighbors[2])
+        assertEquals('9', ruleFormat.sustainNeighbors[3])
     }
 
 }

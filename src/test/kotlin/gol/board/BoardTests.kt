@@ -213,4 +213,52 @@ class BoardTests {
         assertEquals(2, board.livingNeighbors(1, 1))
 
     }
+    /**
+     * for any cell, determine the number of living neighbors
+     */
+    @Test
+    fun determineNumberOfLiving1NeighborCorner() {
+
+        var board = Board(3, 3)
+        board.setCellAt(1, 1, LiveCell())
+        board.setCellAt(0, 0, LiveCell())
+        assertEquals(1, board.livingNeighbors(1, 1))
+
+        board = Board(3, 3)
+        board.setCellAt(1, 1, LiveCell())
+        board.setCellAt(0, 2, LiveCell())
+        assertEquals(1, board.livingNeighbors(1, 1))
+
+        board = Board(3, 3)
+        board.setCellAt(1, 1, LiveCell())
+        board.setCellAt(2, 0, LiveCell())
+        assertEquals(1, board.livingNeighbors(1, 1))
+
+        board = Board(3, 3)
+        board.setCellAt(1, 1, LiveCell())
+        board.setCellAt(2, 2, LiveCell())
+        assertEquals(1, board.livingNeighbors(1, 1))
+
+    }
+
+    /**
+     * for any cell, determine the number of living neighbors
+     */
+    @Test
+    fun determineNumberOfLiving2NeighborCorner() {
+
+        var board = Board(3, 3)
+        board.setCellAt(1, 1, LiveCell())
+        board.setCellAt(0, 0, LiveCell())
+        board.setCellAt(2, 2, LiveCell())
+        assertEquals(2, board.livingNeighbors(1, 1))
+
+        board = Board(3, 3)
+        board.setCellAt(1, 1, LiveCell())
+        board.setCellAt(2, 0, LiveCell())
+        board.setCellAt(0, 2, LiveCell())
+        assertEquals(2, board.livingNeighbors(1, 1))
+
+    }
+
 }

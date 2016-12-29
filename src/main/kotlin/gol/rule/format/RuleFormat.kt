@@ -6,7 +6,7 @@ package gol.rule.format
 interface RuleFormat {
 
     var birthNeighbors: CharArray
-    var deathNeighbors: CharArray
+    var sustainNeighbors: CharArray
 
     fun serialize(): String
 }
