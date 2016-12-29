@@ -13,17 +13,22 @@ class RleCellFormat(val cell: Cell) : FormatBase<RleCellFormat>() {
 
     override fun serialize(): String {
         return when {
-            CellMortality.Alive == cell.mortality -> "o"
-            CellMortality.Dead == cell.mortality -> "b"
-            else -> "?"
+            CellMortality.Alive == cell.mortality -> O
+            CellMortality.Dead == cell.mortality -> B
+            else -> UNKNOWN
         }
     }
 
     companion object {
+
+        val O = "o"
+        val B = "b"
+        val UNKNOWN = "?"
+
         fun deserialize(repr: String): RleCellFormat {
             return when {
-                repr == "b" -> RleCellFormat(DeadCell())
-                repr == "o" -> RleCellFormat(LiveCell())
+                repr == B -> RleCellFormat(DeadCell())
+                repr == O -> RleCellFormat(LiveCell())
                 else -> RleCellFormat(LiveCell()) // This is what the spec requires
             }
         }

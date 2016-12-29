@@ -30,7 +30,7 @@ class RleBoardFormatTests {
      */
     @Test
     fun headerSerialization() {
-        assertEquals("x = 3, y = 4, rule = B3/S23\n", RleHeaderFormat(width=3, height=4, rule="B3/S23"))
+        assertEquals("x = 3, y = 4, rule = B3/S23\n", RleHeaderFormat(width=3, height=4, rule="B3/S23").serialize())
     }
 
     /**
@@ -38,7 +38,7 @@ class RleBoardFormatTests {
      */
     @Test
     fun livingCellSerialization() {
-        assertEquals("o", RleCellFormat(LiveCell()))
+        assertEquals("o", RleCellFormat(LiveCell()).serialize())
     }
 
     /**
@@ -46,7 +46,7 @@ class RleBoardFormatTests {
      */
     @Test
     fun deadCellSerialization() {
-        assertEquals("b", RleCellFormat(DeadCell()))
+        assertEquals("b", RleCellFormat(DeadCell()).serialize())
     }
 
     /**
@@ -57,7 +57,7 @@ class RleBoardFormatTests {
         val board: Board = Board(3, 1)
         board.setCellAt(0, 0, LiveCell())
         board.setCellAt(2, 0, LiveCell())
-        assertEquals("obo$", RleRowFormat(board, 0))
+        assertEquals("obo$", RleRowFormat(board, 0).serialize())
     }
 
     /**
@@ -68,7 +68,7 @@ class RleBoardFormatTests {
         val board: Board = Board(3, 1)
         board.setCellAt(0, 0, LiveCell())
         board.setCellAt(2, 0, LiveCell())
-        assertEquals("obo!", RleRowFormat(board, 0, last=true))
+        assertEquals("obo!", RleRowFormat(board, 0, last=true).serialize())
     }
 
     /**
@@ -80,12 +80,12 @@ class RleBoardFormatTests {
         val board: Board = Board(3, 1)
         board.setCellAt(1, 0, LiveCell())
         board.setCellAt(2, 0, LiveCell())
-        assertEquals("b2o$", RleRowFormat(board, 0))
+        assertEquals("b2o$", RleRowFormat(board, 0).serialize())
 
         board.setCellAt(0, 0, LiveCell())
         board.setCellAt(1, 0, LiveCell())
         board.setCellAt(2, 0, LiveCell())
-        assertEquals("3o$", RleRowFormat(board, 0))
+        assertEquals("3o$", RleRowFormat(board, 0).serialize())
     }
 
     /**
@@ -96,7 +96,7 @@ class RleBoardFormatTests {
     fun rowSerializationDropsTrailingDeadCells() {
         val board: Board = Board(3, 1)
         board.setCellAt(0, 0, LiveCell())
-        assertEquals("o$", RleRowFormat(board, 0))
+        assertEquals("o$", RleRowFormat(board, 0).serialize())
     }
 
     /**
@@ -112,7 +112,7 @@ class RleBoardFormatTests {
         board.setCellAt(0, 2, LiveCell())
         board.setCellAt(1, 2, LiveCell())
         board.setCellAt(2, 2, LiveCell())
-        assertEquals("x = 3, y = 3, rule = B3/S23\nbo$2bo$3o!", RleBoardFormat(board))
+        assertEquals("x = 3, y = 3, rule = B3/S23\nbo$2bo$3o!", RleBoardFormat(board).serialize())
     }
 
     /**

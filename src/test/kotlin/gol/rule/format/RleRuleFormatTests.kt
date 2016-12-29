@@ -17,7 +17,7 @@ class RleRuleFormatTests {
     @Test
     fun canBeSerializedAsString() {
         val ruleFormat = RleRuleFormat("B3/S23")
-        assertEquals("B3/S23", ruleFormat)
+        assertEquals("B3/S23", ruleFormat.serialize())
     }
 
     /**

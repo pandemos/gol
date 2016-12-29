@@ -26,7 +26,7 @@ class PlaintextBoardFormatTests {
      */
     @Test
     fun headerSerialization() {
-        assertEquals("!Name: Example\n!\n", PlaintextHeaderFormat(name="Example"))
+        assertEquals("!Name: Example\n!\n", PlaintextHeaderFormat(name="Example").serialize())
     }
 
     /**
@@ -34,7 +34,7 @@ class PlaintextBoardFormatTests {
      */
     @Test
     fun livingCellSerialization() {
-        assertEquals("O", PlaintextCellFormat(LiveCell()))
+        assertEquals("O", PlaintextCellFormat(LiveCell()).serialize())
     }
 
     /**
@@ -42,7 +42,7 @@ class PlaintextBoardFormatTests {
      */
     @Test
     fun deadCellSerialization() {
-        assertEquals(".", PlaintextCellFormat(DeadCell()))
+        assertEquals(".", PlaintextCellFormat(DeadCell()).serialize())
     }
 
     /**
@@ -58,7 +58,7 @@ class PlaintextBoardFormatTests {
         board.setCellAt(0, 2, LiveCell())
         board.setCellAt(1, 2, LiveCell())
         board.setCellAt(2, 2, LiveCell())
-        assertEquals("!Name: name\n!\n.O.\n..O\nOOO\n", PlaintextBoardFormat(board, "name"))
+        assertEquals("!Name: name\n!\n.O.\n..O\nOOO\n", PlaintextBoardFormat(board, "name").serialize())
     }
 
 }

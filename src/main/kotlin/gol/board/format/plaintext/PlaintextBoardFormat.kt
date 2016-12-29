@@ -10,11 +10,11 @@ class PlaintextBoardFormat(val board: Board, val name: String = "") : FormatBase
 
     override fun serialize(): String {
         var sb = StringBuilder()
-                .append(PlaintextHeaderFormat(name))
+                .append(PlaintextHeaderFormat(name).serialize())
 
         for (y in 0..board.height-1) {
             for (x in 0..board.width-1) {
-                sb.append(PlaintextCellFormat(board.cellAt(x, y)))
+                sb.append(PlaintextCellFormat(board.cellAt(x, y)).serialize())
 
             }
             sb.append("\n")
