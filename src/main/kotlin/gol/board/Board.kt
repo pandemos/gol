@@ -61,7 +61,54 @@ class Board(val width: Int,
      * Determine the number of living neighbors
      */
     fun livingNeighbors(x: Int, y: Int): Int {
-        return 0
+        return listOf(
+                neighborAbove(x, y),
+                neighborBelow(x, y),
+                neighborLeft(x, y),
+                neighborRight(x, y)
+        ).filter { m ->
+            m == CellMortality.Alive
+        }.size
+    }
+
+    /**
+     * Determine mortality of neighbor above
+     */
+    fun neighborAbove(x: Int, y: Int): CellMortality {
+        if (y == 0) {
+            return CellMortality.Dead
+        }
+        return cellAt(x, y-1).mortality
+    }
+
+    /**
+     * Determine mortality of neighbor above
+     */
+    fun neighborBelow(x: Int, y: Int): CellMortality {
+        if (y == height-1) {
+            return CellMortality.Dead
+        }
+        return cellAt(x, y+1).mortality
+    }
+
+    /**
+     * Determine mortality of neighbor above
+     */
+    fun neighborLeft(x: Int, y: Int): CellMortality {
+        if (x == 0) {
+            return CellMortality.Dead
+        }
+        return cellAt(x-1, y).mortality
+    }
+
+    /**
+     * Determine mortality of neighbor above
+     */
+    fun neighborRight(x: Int, y: Int): CellMortality {
+        if (x == width-1) {
+            return CellMortality.Dead
+        }
+        return cellAt(x+1, y).mortality
     }
 
     private fun makeCellKey(x: Int, y: Int): String {

@@ -23,13 +23,13 @@
 - Board state can be loaded from an RLE string: http://conwaylife.com/wiki/Run_Length_Encoded
 - Board rules can be saved as a rulestring: http://conwaylife.com/wiki/Rulestring#Rules
 - Board rules can be loaded from a rulestring: http://conwaylife.com/wiki/Rulestring#Rules
+- A board must be able to, for any cell, determine the number of living neighbors
+    - A neighbor is a cell with an adjoining edge
 
 ## TODO
 
 ### Board
 
-- A board must be able to, for any cell, determine the number of living neighbors
-    - A neighbor is a cell with an adjoining edge or corner
 - A board has a set of rules:
   - For a cell that is ALIVE:
       - Each cell with one or no living neighbors dies, as if by solitude.
