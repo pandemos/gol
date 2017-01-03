@@ -7,7 +7,6 @@ import gol.cell.LiveCell
 import gol.rule.ConwayRules
 import gol.rule.Rules
 import java.security.SecureRandom
-import java.util.*
 
 /** Board containing the grid of cells
  * Created by aknauss on 12/21/16.
@@ -16,32 +15,28 @@ class Board(val width: Int,
             val height: Int,
             var iteration: Int = 0,
             val rules: Rules = ConwayRules()) {
-    private var cells = HashMap<String, Cell>()
+    private var cells: MutableList<MutableList<Cell>>
+
+    init {
+        cells = (0 until height).map { y ->
+                    (0 until width).map { x ->
+                        DeadCell()
+                    }.toMutableList<Cell>()
+                }.toMutableList()
+    }
 
     /**
      * Set the cell at the specified coordinate to the specified cell instance
      */
     fun setCellAt(x: Int, y: Int, cell: Cell) {
-        checkCellRange(x, y)
-        val cellKey = makeCellKey(x, y)
-        if (cell.isDead()) {
-            cells.remove(key = cellKey)
-            return
-        }
-        cells.set(cellKey, cell)
+        cells[y][x] = cell
     }
 
     /**
      * Get the cell at the specified coordinates
      */
     fun cellAt(x: Int, y: Int): Cell {
-        checkCellRange(x, y)
-        val cellKey = makeCellKey(x, y)
-        val cell = cells[cellKey]
-        if (cell != null) {
-            return cell
-        }
-        return DeadCell()
+        return cells[y][x]
     }
 
     /**
@@ -169,16 +164,6 @@ class Board(val width: Int,
         }
     }
 
-    private fun makeCellKey(x: Int, y: Int): String {
-        return "{$x},{$y}"
-    }
-
-    private fun checkCellRange(x: Int, y: Int) {
-        if (x < 0 || x >= width || y < 0 || y >= height) {
-            throw IndexOutOfBoundsException("Requested index is outside of board: $x, $y")
-        }
-    }
-
     companion object {
 
         private val randomGenerator: SecureRandom = SecureRandom()
@@ -188,7 +173,7 @@ class Board(val width: Int,
          */
         fun random(width: Int, height: Int, nInitialCells: Int): Board {
             val board = Board(width, height)
-            for (i in 0..nInitialCells) {
+            for (i in 0 until nInitialCells) {
                 val x = randomGenerator.nextInt(width)
                 val y = randomGenerator.nextInt(height)
                 board.setCellAt(x, y, LiveCell())

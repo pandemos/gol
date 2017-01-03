@@ -40,45 +40,6 @@ class BoardTests {
     }
 
     /**
-     * Only store living cells, others are assumed dead
-     */
-    @Test
-    fun onlyStoreLivingCells() {
-        val board = Board(width = 3, height = 3)
-        val cell00 = DeadCell()
-        val cell10 = DeadCell()
-        val cell20 = DeadCell()
-        val cell01 = DeadCell()
-        val cell11 = LiveCell()
-        val cell21 = DeadCell()
-        val cell02 = DeadCell()
-        val cell12 = DeadCell()
-        val cell22 = DeadCell()
-
-        board.setCellAt(0, 0, cell00)
-        board.setCellAt(1, 0, cell10)
-        board.setCellAt(2, 0, cell20)
-        board.setCellAt(0, 1, cell01)
-        board.setCellAt(1, 1, cell11)
-        board.setCellAt(2, 1, cell21)
-        board.setCellAt(0, 2, cell02)
-        board.setCellAt(1, 2, cell12)
-        board.setCellAt(2, 2, cell22)
-
-        assertFalse(cell00 === board.cellAt(0, 0))
-        assertFalse(cell10 === board.cellAt(1, 0))
-        assertFalse(cell20 === board.cellAt(2, 0))
-        assertFalse(cell01 === board.cellAt(0, 1))
-        assertTrue(cell11 === board.cellAt(1, 1))
-        assertFalse(cell21 === board.cellAt(2, 1))
-        assertFalse(cell02 === board.cellAt(0, 2))
-        assertFalse(cell12 === board.cellAt(1, 2))
-        assertFalse(cell22 === board.cellAt(2, 2))
-
-
-    }
-
-    /**
      * iteration count starts at 0
      */
     @Test
