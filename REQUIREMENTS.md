@@ -37,3 +37,6 @@
       - Any cell that touches one or more board edges dies
   - For a cell that is DEAD:
       - Each cell with exactly three living neighbors becomes populated.
+
+- Board state can be loaded using a plaintext format
+      - The intention is to enable copying / pasting an interesting pattern from a larger board.

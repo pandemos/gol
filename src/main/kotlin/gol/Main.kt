@@ -9,9 +9,9 @@ import gol.cell.LiveCell
  * Created by aknauss on 12/21/16.
  */
 fun main(args: Array<String>) {
-    val width = 100
-    val height = 100
-    val nCells = 900
+    val width = 300
+    val height = 300
+    val nCells = 5900
     val nSteps = 100
     var board = Board.random(width, height, nCells)
     board.rules.whenApplied { Board ->
