@@ -23,21 +23,18 @@ abstract class Rules(val ruleString: String) {
     fun applyTo(board: Board) {
         val newBoard = Board(board.width, board.height, board.iteration, board.rules)
 
-        // Apply birth rules
-        for (rule in ruleFormat.birthNeighbors) {
-            for (y in (0 until board.height)) {
-                for (x in (0 until board.width)) {
+        for (y in (0 until board.height)) {
+            for (x in (0 until board.width)) {
+
+                // Apply birth rules
+                for (rule in ruleFormat.birthNeighbors) {
                     val cell = board.cellAt(x, y)
                     if (cell.isDead() && board.livingNeighbors(x, y) == rule.toString().toInt()) {
                         newBoard.setCellAt(x, y, LiveCell())
                     }
                 }
-            }
-        }
 
-        // Apply sustain rules
-        for (y in (0 until board.height)) {
-            for (x in (0 until board.width)) {
+                // Apply sustain rules
                 val cell = board.cellAt(x, y)
                 val nNeighbors = board.livingNeighbors(x, y)
                 val matchesRule = ruleFormat.sustainNeighbors.map { n -> n.toString().toInt() }.contains(nNeighbors)
