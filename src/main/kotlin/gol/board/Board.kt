@@ -18,6 +18,7 @@ class Board(val width: Int,
     private var cells: MutableList<MutableList<Cell>>
 
     init {
+
         cells = (0 until height).map { y ->
                     (0 until width).map { x ->
                         DeadCell()
@@ -157,12 +158,20 @@ class Board(val width: Int,
      */
     fun copyFrom(other: Board) {
         assert(width == other.width && height == other.height)
-        for (y in (0 until other.height)) {
-            for (x in (0 until other.width)) {
-                setCellAt(x, y, other.cellAt(x, y))
-            }
+        other.forEach { x, y, cell ->
+            setCellAt(x, y, cell)
+
         }
     }
+
+    fun<T> map(f: (Int, Int, Cell) -> T): Iterable<T> =
+        (0 until height).flatMap { y ->
+            (0 until width).map { x ->
+                f(x, y, cellAt(x, y))
+            }
+        }
+
+    fun forEach(f: (Int, Int, Cell) -> Unit) = map(f)
 
     companion object {
 
