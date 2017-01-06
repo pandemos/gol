@@ -191,13 +191,17 @@ class Board(val width: Int,
         private val randomGenerator: SecureRandom = SecureRandom()
 
         /**
-         * Create a new board at iteration 0 and initialize it with up to n living cells
+         * Create a new board at iteration 0 and initialize it with n living cells
          */
         fun random(width: Int, height: Int, nInitialCells: Int): Board {
             val board = Board(width, height)
             for (i in 0 until nInitialCells) {
-                val x = randomGenerator.nextInt(width)
-                val y = randomGenerator.nextInt(height)
+                var x = randomGenerator.nextInt(width)
+                var y = randomGenerator.nextInt(height)
+                while (board.cellAt(x, y).mortality == CellMortality.Alive) {
+                    x = randomGenerator.nextInt(width)
+                    y = randomGenerator.nextInt(height)
+                }
                 board.setCellAt(x, y, LiveCell())
             }
             return board

@@ -11,7 +11,7 @@ import gol.cell.LiveCell
 fun main(args: Array<String>) {
     val width = 300
     val height = 300
-    val nCells = 5900
+    val nCells = 7900
     val nSteps = 100
     var board = Board.random(width, height, nCells)
     board.rules.whenApplied { Board ->
