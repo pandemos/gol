@@ -12,13 +12,13 @@ class PlaintextBoardFormat(val board: Board, val name: String = "") : FormatBase
         var sb = StringBuilder()
                 .append(PlaintextHeaderFormat(name).serialize())
 
-        for (y in 0..board.height-1) {
-            for (x in 0..board.width-1) {
+        board.mapRows { y ->
+            board.mapColumns { x ->
                 sb.append(PlaintextCellFormat(board.cellAt(x, y)).serialize())
-
             }
             sb.append("\n")
         }
+
         return sb.toString()
     }
 }

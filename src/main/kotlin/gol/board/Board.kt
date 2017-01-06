@@ -19,11 +19,12 @@ class Board(val width: Int,
 
     init {
 
-        cells = (0 until height).map { y ->
-                    (0 until width).map { x ->
-                        DeadCell()
-                    }.toMutableList<Cell>()
-                }.toMutableList()
+        cells = mapRows { y ->
+            mapColumns { x ->
+                DeadCell()
+            }.toMutableList<Cell>()
+        }.toMutableList()
+
     }
 
     /**
@@ -165,13 +166,25 @@ class Board(val width: Int,
     }
 
     fun<T> map(f: (Int, Int, Cell) -> T): Iterable<T> =
-        (0 until height).flatMap { y ->
-            (0 until width).map { x ->
+        mapRows { y ->
+            mapColumns { x ->
                 f(x, y, cellAt(x, y))
             }
-        }
+
+        }.flatten()
 
     fun forEach(f: (Int, Int, Cell) -> Unit) = map(f)
+
+    fun<T> mapRows(f: (Int) -> T): Iterable<T> =
+        (0 until height).map { y ->
+            f(y)
+        }
+
+    fun<T> mapColumns(f: (Int) -> T): Iterable<T> =
+        (0 until width).map { x ->
+            f(x)
+        }
+
 
     companion object {
 
